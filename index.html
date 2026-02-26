@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opening Product...</title>
+    <script>
+        window.onload = function() {
+            // URL se Product ID nikalna (e.g. ?id=123)
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (productId) {
+                // 1. Custom Scheme use karke App open karne ki koshish karein
+                const appUrl = "shopaale://product/" + productId;
+                window.location.href = appUrl;
+
+                // 2. Agar 2 second tak app nahi khula (matlab installed nahi hai)
+                // Toh user ko Play Store par bhej dein
+                setTimeout(function() {
+                    window.location.href = "https://play.google.com/store/apps/details?id=com.app.shopaale";
+                }, 2000);
+            }
+        };
+    </script>
+</head>
+<body>
+    <p>Please wait, opening app...</p>
+</body>
+</html>
