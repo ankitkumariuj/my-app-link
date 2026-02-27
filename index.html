@@ -2,31 +2,31 @@
 <html>
 <head>
     <title>Opening Product...</title>
-    <script>
+    
+</head>
+<body>
+    
+    
+    <h2>Please wait, opening app...</h2>
+<script>
 window.onload = function () {
 
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("pid");
 
-    if (!productId) {
-        alert("Invalid Product");
-        return;
-    }
-
     const appUrl = "shopaale://product/" + productId;
-    const playStoreUrl = "market://details?id=com.app.shopaale";
+
+    const playStoreUrl =
+    "intent://details?id=com.app.shopaale#Intent;scheme=market;package=com.android.vending;end";
 
     // Try open app
     window.location.href = appUrl;
 
-    // If not installed → open Play Store app
+    // Fallback
     setTimeout(function () {
         window.location.href = playStoreUrl;
     }, 1500);
 };
 </script>
-</head>
-<body>
-    <h2>Please wait, opening app...</h2>
 </body>
 </html>
